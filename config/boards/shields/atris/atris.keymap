@@ -1,0 +1,131 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/mouse.h>
+
+&caps_word { continue-list = <MINUS UNDERSCORE BKSP DEL LEFT RIGHT DOT COMMA SEMI SLASH>; };
+&sk { release-after-ms = <3000>; quick-release; ignore-modifiers; };
+&sl { release-after-ms = <3000>; };
+
+#define AZ  0
+#define NV  1
+#define MU  2
+#define NU  3
+#define SY  4
+#define FU  5
+
+#define ASH(l) &tkp LS(l) l
+#define KPT(l) &kpt l l
+#define BT(d) &bt BT_SEL d
+#define VX &tkp LC(X) LC(V)
+#define CZ &tkp LC(Z) LC(C)
+#define GUITAB &kp LG(TAB)
+#define DELWRD LC(BKSP)
+
+
+#define U_MOUSE_MOVE_MAX 1500 /* max speed. default is 600 */
+#undef MOVE_UP
+#undef MOVE_DOWN
+#undef MOVE_LEFT
+#undef MOVE_RIGHT
+#define MOV_U MOVE_VERT(-U_MOUSE_MOVE_MAX)
+#define MOV_D MOVE_VERT(U_MOUSE_MOVE_MAX)
+#define MOV_L MOVE_HOR(-U_MOUSE_MOVE_MAX)
+#define MOV_R MOVE_HOR(U_MOUSE_MOVE_MAX)
+
+#define U_MOUSE_SCROLL_MAX 20 /* <--- New max speed setting (default: 10) */
+#undef SCROLL_UP
+#undef SCROLL_DOWN
+#define SCR_U SCROLL_VERT(U_MOUSE_SCROLL_MAX)
+#define SCR_D SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
+
+&mmv { acceleration-exponent=<1>; time-to-max-speed-ms = <800>;};
+&mwh { acceleration-exponent=<0>; time-to-max-speed-ms = <1500>;};
+
+/ { 
+    macros {
+        rls_mods: rls_mods { compatible = "zmk,behavior-macro"; label = "ZM_rls_mods"; #binding-cells = <0>; wait-ms = <5>; tap-ms = <15>;
+            bindings = <&macro_release &kp LSHFT &kp LCTRL &kp LALT &kp LGUI>; };
+        rst_all:  rst_all  { compatible = "zmk,behavior-macro"; label = "ZM_rst_all"; #binding-cells = <0>; wait-ms = <5>; tap-ms = <15>;
+            bindings = <&macro_release &kp LSHFT &kp LCTRL &kp LALT &kp LGUI>, <&macro_tap &to 0>; };
+    };
+
+    behaviors {
+        mk:  moml_kp      { compatible = "zmk,behavior-hold-tap"; label = "MOML_KP";      #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&kp>; }; 
+        mg:  mom_tog_l    { compatible = "zmk,behavior-hold-tap"; label = "MOM_TOG_L";    #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&tog>; }; 
+        tkp: two_kp       { compatible = "zmk,behavior-hold-tap"; label = "TWO_KP";       #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <175>; bindings = <&kp>, <&kp>; }; 
+        kpt: kp_kt        { compatible = "zmk,behavior-hold-tap"; label = "KP_KT";        #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <175>; bindings = <&kp>, <&kt>; }; 
+        
+        slk: sl_kp        { compatible = "zmk,behavior-hold-tap"; label = "SL_KP";        #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&sl>, <&kp>; }; 
+        msl: moml_1shot_l { compatible = "zmk,behavior-hold-tap"; label = "MOML_1SHOT_L"; #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&sl>; }; 
+        tsl: togl_1shot_l { compatible = "zmk,behavior-hold-tap"; label = "TOGL_1SHOT_L"; #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&tog>, <&sl>; }; 
+
+        appswt: appswitch { compatible = "zmk,behavior-mod-morph"; label = "APPSWITCH"; #binding-cells = <0>; 
+            bindings = <&kt LALT>, <&kp TAB>; mods = <(MOD_LALT)>; };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_mou { timeout-ms = <50>; key-positions = <6 16>; bindings = <&to MU>; };
+        combo_nav { timeout-ms = <50>; key-positions = <7 17>; bindings = <&to NV>; };
+        combo_0   { timeout-ms = <50>; key-positions = <8 18>; bindings = <&to 0>; };
+        combo_fun { timeout-ms = <50>; key-positions = <5 15>; bindings = <&to FU>; };
+    };
+ 
+    keymap {
+        compatible = "zmk,keymap";
+        abc {
+            bindings = <
+                ASH(W)  ASH(C)  ASH(H)  ASH(M)  ASH(Q)          &rst_all      ASH(U)  ASH(I)  ASH(O)  ASH(J) 
+                ASH(D)  ASH(S)  ASH(R)  ASH(T)  ASH(Z)          &key_repeat   ASH(N)  ASH(E)  ASH(A)  ASH(L) 
+                ASH(F)  ASH(G)  ASH(X)  ASH(V)                                ASH(P)  ASH(Y)  ASH(B)  ASH(K) 
+                                    &mk NU BKSP   &mk NU BKSP     &mk SY SPACE  &mk SY SPACE
+            >;
+        };
+
+        nav { 
+            bindings = <
+                &kp DEL    &kp ESC     KPT(LSHFT)  &kp TAB    &none     &trans  &kp HOME  &kp UP    &kp END    CZ 
+                &rls_mods  KPT(LCTRL)  KPT(LGUI)   KPT(LALT)  &none     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  VX 
+                &to 0      &none       &none       &none                        &kp PG_UP &kp INS   &kp PG_DN  &tog NV 
+                                                   &trans    &trans     &trans    &trans
+            >;
+        };
+
+        mou {
+            bindings = <
+                &kp DEL    &kp ESC     KPT(LSHFT)  &kp TAB    &none      &trans  &mwh SCR_U  &mmv MOV_U  &mwh SCR_D  CZ 
+                &rls_mods  KPT(LCTRL)  KPT(LGUI)   KPT(LALT)  &none      &trans  &mmv MOV_L  &mmv MOV_D  &mmv MOV_R  VX 
+                &to 0      &none       &none       &none                         &mkp LCLK   &kp K_APP   &mkp RCLK   &tog MU 
+                                                   &trans    &trans     &trans    &trans
+            >;
+        };
+
+        num {
+            bindings = <
+                &kp DEL  &kp ESC    &sk LSHFT  &kp TAB   &none      &trans    ASH(N7)  ASH(N8)  ASH(N9)  &none 
+                &mo NV   &sk LCTRL  &sk LGUI   &sk LALT  &none      &trans    ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
+                &to MU   &to NV     &none      &none                          ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
+                                                 &none   &none      &mk FU ENTER     &mk FU ENTER  
+            >;
+        };
+ 
+        sym {
+            bindings = <
+                ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  &kp PSCRN        &trans  &kp TAB   &sk LSHFT  &kp ESC    &kp DEL 
+                ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)        &trans  &sk LALT  &sk LGUI   &sk LCTRL  &kp ENTER 
+                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                           &none     &out OUT_TOG  &to NV  &to MU  
+                                              &mk FU DELWRD  &mk FU DELWRD    &none  &none
+            >;
+        };
+
+        fun {
+            bindings = <
+                &bt BT_CLR  BT(0)  &kp C_BRI_UP  &kp C_VOL_UP &none      &trans  &kp F7  &kp F8  &kp F9  &kp F12 
+                BT(1)       BT(2)  &kp C_BRI_DN  &kp C_VOL_DN &none      &trans  &kp F4  &kp F5  &kp F6  &kp F11 
+                BT(3)       &none  &none         &kp C_MUTE                      &kp F1  &kp F2  &kp F3  &kp F10 
+                                                    &to 0   &to 0      &to 0   &to 0
+            >;
+        };
+    };
+};

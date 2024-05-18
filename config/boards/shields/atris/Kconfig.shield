@@ -1,0 +1,5 @@
+config SHIELD_ATRIS_LEFT
+	def_bool $(shields_list_contains,atris_left)
+
+config SHIELD_ATRIS_RIGHT
+	def_bool $(shields_list_contains,atris_right)

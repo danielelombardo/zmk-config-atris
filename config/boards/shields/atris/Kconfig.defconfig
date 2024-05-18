@@ -1,0 +1,21 @@
+config ZMK_BLE
+	default y
+
+
+if SHIELD_ATRIS_RIGHT
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+config ZMK_KEYBOARD_NAME
+	default "_atris"
+
+endif # SHIELD_ATRIS_LEFT
+
+
+if SHIELD_ATRIS_LEFT || SHIELD_ATRIS_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+endif # SHIELD_ATRIS_LEFT || SHIELD_ATRIS_RIGHT
