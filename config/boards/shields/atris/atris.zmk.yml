@@ -8,3 +8,4 @@ features:
 siblings:
   - atris_left
   - atris_right
+  - atris_dongle

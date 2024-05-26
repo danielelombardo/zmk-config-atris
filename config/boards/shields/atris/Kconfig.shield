@@ -3,3 +3,6 @@ config SHIELD_ATRIS_LEFT
 
 config SHIELD_ATRIS_RIGHT
 	def_bool $(shields_list_contains,atris_right)
+
+config SHIELD_ATRIS_DONGLE
+	def_bool $(shields_list_contains,atris_dongle)
