@@ -96,7 +96,7 @@
             bindings = <
                 ____   MWH_U  MMV_U  CZ     xxxx     ____  &kp HOME   &kp UP    &kp END    CZ 
                 MWH_D  MMV_L  MMV_D  MMV_R  xxxx     ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
-                &rst_all  MCK_R  &kp APP  VX               &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
+                &rst_all  MCK_R  &kp K_APP  VX             &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
                                       ____  MCK_L    ____  ____ 
             >;
         };
