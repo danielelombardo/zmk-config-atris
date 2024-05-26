@@ -122,7 +122,7 @@
             bindings = <
                 ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  &kp PSCRN        &trans  &kp TAB   &sk LSHFT  &kp ESC    &kp DEL 
                 ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)        &trans  &sk LALT  &sk LGUI   &sk LCTRL  &kp ENTER 
-                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                           &none     &out OUT_TOG  &to NV  &to MU 
+                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                           &none     &none      &to NV  &to MU 
                                               &mk FU DELWRD  &mk FU DELWRD    &none  &none
             >;
         };
