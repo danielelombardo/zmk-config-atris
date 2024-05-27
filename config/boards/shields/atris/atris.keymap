@@ -25,7 +25,7 @@
 
 
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
-#define ZMK_MOUSE_DEFAULT_SCRL_VAL 50    // 10
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 40    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_keys.dtsi>
@@ -37,8 +37,8 @@
 };
 
 &msc {
-  acceleration-exponent = <0>;      // 0
-  time-to-max-speed-ms = <3000>;    // 500
+  acceleration-exponent = <1>;      // 0
+  time-to-max-speed-ms = <5000>;    // 500
   delay-ms = <0>;                   // 10
 };
 
@@ -94,10 +94,10 @@
 
         nav { 
             bindings = <
-                ____   MWH_U  MMV_U  CZ     xxxx     ____  &kp HOME   &kp UP    &kp END    CZ 
-                MWH_D  MMV_L  MMV_D  MMV_R  xxxx     ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
-                &rst_all  MCK_R  &kp K_APP  VX             &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
-                                      ____  MCK_L    ____  ____ 
+                ____   MWH_U  MMV_U  CZ     xxxx          ____  &kp HOME   &kp UP    &kp END    CZ 
+                MWH_D  MMV_L  MMV_D  MMV_R  &key_repeat   ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
+                &rst_all  MCK_R  &kp K_APP  VX            &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
+                                      ____  MCK_L         ____  ____ 
             >;
         };
 
@@ -105,7 +105,7 @@
             bindings = <
                 &kp DEL    &kp ESC    &kp LEFT   ____      xxxx     ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
                 &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  xxxx     ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
-                &rls_mods  &to NV     &kp RIGHT  &kp TAB                  ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
+                &to NV     &kp RIGHT  ____       &kp TAB                  ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
                                                      xxxx  xxxx     &mk FU ENTER  &dot_spc 
             >;
         };
@@ -114,7 +114,7 @@
             bindings = <
                 ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  xxxx        ____  ____      &kp LEFT   &kp ESC    &kp DEL 
                 ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)   ____  &sk RALT  &sk RGUI   &sk RCTRL  &sk RSHFT 
-                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB   &kp RIGHT  &to NV     &rls_mods 
+                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB  ____       &kp RIGHT  &to NV 
                                               &com_spc  &mk FU DELWRD    xxxx  xxxx
             >;
         };
@@ -123,8 +123,8 @@
             bindings = <
                 xxxx       &kp C_BRI_DN  &kp C_BRI_UP  xxxx      xxxx    ____  &kp F7  &kp F8  &kp F9  &kp F12 
                 &kt LSHFT  &kt LCTRL     &kt LGUI      &kt LALT  xxxx    ____  &kp F4  &kp F5  &kp F6  &kp F11 
-                &kp PSCRN  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE              &kp F1  &kp F2  &kp F3  &kp F10 
-                                                      &rls_mods  &to 0    &to 0  &to 0
+                &kp PSCRN  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP            &kp F1  &kp F2  &kp F3  &kp F10 
+                                                      &rls_mods  &to 0   &to 0  &to 0
             >;
         };
     };
