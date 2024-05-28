@@ -25,7 +25,7 @@
 
 
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
-#define ZMK_MOUSE_DEFAULT_SCRL_VAL 50    // 10
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_keys.dtsi>
@@ -37,8 +37,8 @@
 };
 
 &msc {
-  acceleration-exponent = <0>;      // 0
-  time-to-max-speed-ms = <5000>;    // 500
+  acceleration-exponent = <1>;      // 0
+  time-to-max-speed-ms = <40>;    // 500
   delay-ms = <0>;                   // 10
 };
 
@@ -50,7 +50,7 @@
 #define MWH_D &msc SCRL_DOWN
 
 #define MCK_L &mkp LCLK 
-#define MCK_R &mkp RCLK
+#define MCK_R(l) &mck l RCLK
 
 / { 
     macros {
@@ -66,6 +66,7 @@
 
     behaviors {
         mk:  moml_kp      { compatible = "zmk,behavior-hold-tap"; label = "MOML_KP";      #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&kp>; }; 
+        mck: moml_mkp     { compatible = "zmk,behavior-hold-tap"; label = "MOML_MKP";     #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&mkp>; }; 
         mg:  mom_tog_l    { compatible = "zmk,behavior-hold-tap"; label = "MOM_TOG_L";    #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&tog>; }; 
         tkp: two_kp       { compatible = "zmk,behavior-hold-tap"; label = "TWO_KP";       #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <175>; bindings = <&kp>, <&kp>; }; 
         
@@ -94,19 +95,19 @@
 
         nav { 
             bindings = <
-                ____   MWH_U  MMV_U  CZ     xxxx          ____  &kp HOME   &kp UP    &kp END    CZ 
+                ____   MWH_U  MMV_U  xxxx   xxxx          ____  &kp HOME   &kp UP    &kp END    CZ 
                 MWH_D  MMV_L  MMV_D  MMV_R  &key_repeat   ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
-                &rst_all  MCK_R  &kp K_APP  VX            &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
-                                      ____  MCK_L         ____  ____ 
+                &rst_all  &kp K_APP  CZ  VX                     &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
+                                      MCK_L  MCK_R(NU)    ____  ____ 
             >;
         };
 
         num {
             bindings = <
-                &kp DEL    &kp ESC    &kp LEFT   ____      xxxx     ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
-                &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  xxxx     ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
-                &to NV     &kp RIGHT  ____       &kp TAB                  ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
-                                                     xxxx  xxxx     &mk FU ENTER  &dot_spc 
+                &kp DEL    &kp ESC    &kp LEFT   ____      xxxx         ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
+                &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  &key_repeat  ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
+                &to NV     &kp RIGHT  &kp ENTER  &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
+                                                         xxxx  xxxx     &mk FU ENTER  &dot_spc 
             >;
         };
  
@@ -114,7 +115,7 @@
             bindings = <
                 ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  xxxx        ____  ____      &kp LEFT   &kp ESC    &kp DEL 
                 ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)   ____  &sk RALT  &sk RGUI   &sk RCTRL  &sk RSHFT 
-                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB  ____       &kp RIGHT  &to NV 
+                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB   &kp ENTER  &kp RIGHT  &to NV 
                                               &com_spc  &mk FU DELWRD    xxxx  xxxx
             >;
         };
