@@ -67,6 +67,7 @@
     behaviors {
         mk:  moml_kp      { compatible = "zmk,behavior-hold-tap"; label = "MOML_KP";      #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&kp>; }; 
         mck: moml_mkp     { compatible = "zmk,behavior-hold-tap"; label = "MOML_MKP";     #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&mkp>; }; 
+        mmd: moml_macro   { compatible = "zmk,behavior-hold-tap"; label = "MOML_MACRO";   #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&dot_spc>; }; 
         tkp: two_kp       { compatible = "zmk,behavior-hold-tap"; label = "TWO_KP";       #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <175>; bindings = <&kp>, <&kp>; };         
     };
 
@@ -84,7 +85,7 @@
                 ASH(W)  ASH(C)  ASH(F)  ASH(V)  ASH(Q)     &rst_all      ASH(B)  ASH(U)  ASH(L)  ASH(P) 
                 ASH(A)  ASH(S)  ASH(R)  ASH(T)  ASH(Z)     &key_repeat   ASH(N)  ASH(E)  ASH(I)  ASH(O) 
                 ASH(Y)  ASH(G)  ASH(X)  ASH(D)                           ASH(H)  ASH(M)  ASH(J)  ASH(K)
-                           &mk NU BKSP  &mk NV DELWRD      &mk NV ENTER  &mk SY SPACE
+                           &mk NV DELWRD  &mk NU BKSP      &mk SY SPACE  &mk NV ENTER
             >;  
         };
 
@@ -99,19 +100,19 @@
 
         num {
             bindings = <
-                &kp DEL    &kp ESC    &kp LEFT   ____      xxxx         ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
+                &kp DEL    &kp ESC    &kp LEFT   &kp RIGHT  xxxx        ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
                 &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  &key_repeat  ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
-                &to NV     &kp ENTER  &kp RIGHT  &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
-                                                         xxxx  xxxx     &mk FU ENTER  &dot_spc 
+                &to NV     &kp ENTER  xxxx       &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
+                                                         xxxx  xxxx     &mmd FU D  &kp ENTER 
             >;
         };
  
         sym {
             bindings = <
-                ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  xxxx        ____  ____      &kp LEFT   &kp ESC    &kp DEL 
+                ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  xxxx        ____  &kp LEFT  &kp RIGHT  &kp ESC    &kp DEL 
                 ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)   ____  &sk RALT  &sk RGUI   &sk RCTRL  &sk RSHFT 
-                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB   &kp RIGHT  &kp ENTER  &to NV 
-                                              &com_spc  &mk FU DELWRD    xxxx  xxxx
+                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB   xxxx       &kp ENTER  &to NV 
+                                                &com_spc  &mk FU BKSP    xxxx  xxxx
             >;
         };
 
@@ -120,8 +121,8 @@
                 xxxx       &kp C_BRI_DN  &kp C_BRI_UP  xxxx      xxxx    ____  &kp F7  &kp F8  &kp F9  &kp F12 
                 &kt LSHFT  &kt LCTRL     &kt LGUI      &kt LALT  xxxx    ____  &kp F4  &kp F5  &kp F6  &kp F11 
                 &kp PSCRN  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP            &kp F1  &kp F2  &kp F3  &kp F10 
-                                                      &rls_mods  &to 0   &to 0  &to 0
-            >;
+                                                      ____  &rls_mods    &rls_mods  ____ 
+                >;
         };
     };
 };
