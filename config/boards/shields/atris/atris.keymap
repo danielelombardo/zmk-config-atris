@@ -24,8 +24,8 @@
 #define TAB_P LA(LEFT)
 
 
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
-#define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1400  // 600
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 30    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_keys.dtsi>
@@ -91,7 +91,7 @@
 
         nav { 
             bindings = <
-                ____   MWH_U  MMV_U  xxxx   xxxx          ____  &kp HOME   &kp UP    &kp END    CZ 
+                ____   MWH_U  MMV_U  &kt LSHFT  &rst_all  ____  &kp HOME   &kp UP    &kp END    CZ 
                 MWH_D  MMV_L  MMV_D  MMV_R  &key_repeat   ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
                 &rst_all  &kp K_APP  CZ  VX                     &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
                                       MCK_L  MCK_R(NU)    ____  ____ 
@@ -100,7 +100,7 @@
 
         num {
             bindings = <
-                &kp DEL    &kp ESC    &kp LEFT   &kp RIGHT  xxxx        ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
+                &kp DEL    &kp ESC    &kp LEFT   &kp RIGHT &rst_all     ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
                 &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  &key_repeat  ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
                 &to NV     &kp ENTER  xxxx       &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
                                                          xxxx  xxxx     &mmd FU D  &kp ENTER 
@@ -118,10 +118,10 @@
 
         fun {
             bindings = <
-                xxxx       &kp C_BRI_DN  &kp C_BRI_UP  xxxx      xxxx    ____  &kp F7  &kp F8  &kp F9  &kp F12 
-                &kt LSHFT  &kt LCTRL     &kt LGUI      &kt LALT  xxxx    ____  &kp F4  &kp F5  &kp F6  &kp F11 
-                &kp PSCRN  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP            &kp F1  &kp F2  &kp F3  &kp F10 
-                                                      ____  &rls_mods    &rls_mods  ____ 
+                xxxx       &kp C_BRI_DN  &kp C_BRI_UP  xxxx      &rst_all     ____  &kp F7  &kp F8  &kp F9  &kp F12 
+                &kt LSHFT  &kt LCTRL     &kt LGUI      &kt LALT  &key_repeat  ____  &kp F4  &kp F5  &kp F6  &kp F11 
+                &kp PSCRN  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE                   &kp F1  &kp F2  &kp F3  &kp F10 
+                                                           ____  &rls_mods    &rls_mods  ____ 
                 >;
         };
     };
