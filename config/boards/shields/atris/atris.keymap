@@ -70,14 +70,7 @@
         mmd: moml_macro   { compatible = "zmk,behavior-hold-tap"; label = "MOML_MACRO";   #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&mo>, <&dot_spc>; }; 
         tkp: two_kp       { compatible = "zmk,behavior-hold-tap"; label = "TWO_KP";       #binding-cells = <2>; flavor = "tap-preferred"; tapping-term-ms = <175>; bindings = <&kp>, <&kp>; };         
     };
-
-    combos {
-        compatible = "zmk,combos";
-        combo_nav { timeout-ms = <50>; key-positions = <6 16>; bindings = <&to NV>; };
-        combo_0   { timeout-ms = <50>; key-positions = <7 17>; bindings = <&to 0>; };
-        combo_fun { timeout-ms = <50>; key-positions = <8 18>; bindings = <&to FU>; };
-    };
- 
+  
     keymap {
         compatible = "zmk,keymap";
         abc {
@@ -102,8 +95,8 @@
             bindings = <
                 &kp DEL    &kp ESC    &kp LEFT   &kp RIGHT &rst_all     ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
                 &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  &key_repeat  ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
-                &to NV     &kp ENTER  xxxx       &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &kp BKSP 
-                                                         xxxx  xxxx     &mmd FU D  &kp ENTER 
+                &to NV     &kp ENTER  xxxx       &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &com_spc 
+                                                         xxxx  xxxx     &mmd FU D  ____ 
             >;
         };
  
@@ -112,7 +105,7 @@
                 ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  xxxx        ____  &kp LEFT  &kp RIGHT  &kp ESC    &kp DEL 
                 ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)   ____  &sk RALT  &sk RGUI   &sk RCTRL  &sk RSHFT 
                 ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB   xxxx       &kp ENTER  &to NV 
-                                                &com_spc  &mk FU BKSP    xxxx  xxxx
+                                                    ____  &mk FU BKSP    xxxx  xxxx
             >;
         };
 
