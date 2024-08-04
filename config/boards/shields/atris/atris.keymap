@@ -75,45 +75,45 @@
         compatible = "zmk,keymap";
         abc {
             bindings = <
-                ASH(W)  ASH(C)  ASH(F)  ASH(V)  ASH(Q)     &rst_all      ASH(B)  ASH(U)  ASH(L)  ASH(P) 
-                ASH(A)  ASH(S)  ASH(R)  ASH(T)  ASH(Z)     &key_repeat   ASH(N)  ASH(E)  ASH(I)  ASH(O) 
-                ASH(Y)  ASH(G)  ASH(X)  ASH(D)                           ASH(H)  ASH(M)  ASH(J)  ASH(K)
+                ASH(Q)  ASH(W)  ASH(D)  ASH(F)  &rst_all   &rst_all  ASH(J)  ASH(K)  ASH(U)  ASH(P) 
+                ASH(A)  ASH(S)  ASH(R)  ASH(T)  ASH(Z)     ASH(G)    ASH(H)  ASH(E)  ASH(I)  ASH(O) 
+                ASH(Y)  ASH(X)  ASH(C)  ASH(V)                       ASH(N)  ASH(B)  ASH(M)  ASH(L)
                            &mk NV DELWRD  &mk NU BKSP      &mk SY SPACE  &mk NV ENTER
             >;  
         };
 
         nav { 
             bindings = <
-                ____   MWH_U  MMV_U  &kt LSHFT  &rst_all  ____  &kp HOME   &kp UP    &kp END    CZ 
-                MWH_D  MMV_L  MMV_D  MMV_R  &key_repeat   ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
-                &rst_all  &kp K_APP  CZ  VX                     &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
-                                      MCK_L  MCK_R(NU)    ____  ____ 
+                ____   MWH_U  MMV_U  &kt LSHFT  ____     ____  &kp HOME   &kp UP    &kp END    CZ 
+                MWH_D  MMV_L  MMV_D  MMV_R      ____     ____  &kp LEFT   &kp DOWN  &kp RIGHT  VX 
+                &rst_all  &kp K_APP  CZ  VX                    &kp PG_UP  &kp INS   &kp PG_DN  &rst_all 
+                                     MCK_L  MCK_R(NU)    ____  ____ 
             >;
         };
 
         num {
             bindings = <
-                &kp DEL    &kp ESC    &kp LEFT   &kp RIGHT &rst_all     ____  ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
-                &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  &key_repeat  ____  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
-                &to NV     &kp ENTER  xxxx       &kp TAB                      ASH(N1)  ASH(N2)  ASH(N3)  &com_spc 
+                &kp DEL    &kp ESC    &kp LEFT   &kp RIGHT &rst_all     ____     ASH(N7)  ASH(N8)  ASH(N9)  xxxx 
+                &sk LSHFT  &sk LCTRL  &sk LGUI   &sk LALT  &key_repeat  &kp DOT  ASH(N4)  ASH(N5)  ASH(N6)  ASH(N0) 
+                &to NV     &kp ENTER  xxxx       &kp TAB                         ASH(N1)  ASH(N2)  ASH(N3)  &com_spc 
                                                          xxxx  xxxx     &mmd FU D  ____ 
             >;
         };
  
         sym {
             bindings = <
-                ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  xxxx        ____  &kp LEFT  &kp RIGHT  &kp ESC    &kp DEL 
-                ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)   ____  &sk RALT  &sk RGUI   &sk RCTRL  &sk RSHFT 
-                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                    &kp TAB   xxxx       &kp ENTER  &to NV 
+                ASH(GRAVE)  ASH(MINUS) ASH(SQT)  ASH(EQUAL)  ____        &rst_all     &kp LEFT  &kp RIGHT  &kp ESC    &kp DEL 
+                ASH(COMMA)  ASH(DOT)   ASH(SEMI) ASH(SLASH)  ASH(BSLH)   &key_repeat  &sk RALT  &sk RGUI   &sk RCTRL  &sk RSHFT 
+                ASH(LBKT)   ASH(RBKT)  &kp CAPS  &caps_word                           &kp TAB   xxxx       &kp ENTER  &to NV 
                                                     ____  &mk FU BKSP    xxxx  xxxx
             >;
         };
 
         fun {
             bindings = <
-                xxxx       &kp C_BRI_DN  &kp C_BRI_UP  xxxx      &rst_all     ____  &kp F7  &kp F8  &kp F9  &kp F12 
-                &kt LSHFT  &kt LCTRL     &kt LGUI      &kt LALT  &key_repeat  ____  &kp F4  &kp F5  &kp F6  &kp F11 
-                &kp PSCRN  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE                   &kp F1  &kp F2  &kp F3  &kp F10 
+                xxxx       &kp C_BRI_DN  &kp C_BRI_UP  xxxx      &rst_all     &rst_all     &kp F7  &kp F8  &kp F9  &kp F12 
+                &kt LSHFT  &kt LCTRL     &kt LGUI      &kt LALT  &key_repeat  &key_repeat  &kp F4  &kp F5  &kp F6  &kp F11 
+                &kp PSCRN  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE                          &kp F1  &kp F2  &kp F3  &kp F10 
                                                            ____  &rls_mods    &rls_mods  ____ 
                 >;
         };
